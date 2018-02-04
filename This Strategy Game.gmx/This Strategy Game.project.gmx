@@ -6,46 +6,59 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprites name="Game Manager">
+    <sprites name="Menus">
       <sprite>sprites\spr_gamemanager</sprite>
+      <sprites name="Titlescreen">
+        <sprite>sprites\bg_titlescreen</sprite>
+        <sprite>sprites\spr_text_gametitle</sprite>
+        <sprite>sprites\spr_buttons_pressStart</sprite>
+      </sprites>
+      <sprites name="Mainmenu">
+        <sprite>sprites\bg_mainmenu</sprite>
+        <sprite>sprites\spr__buttons_startGame</sprite>
+        <sprite>sprites\spr_buttons_exit</sprite>
+      </sprites>
+      <sprites name="Gamemodes">
+        <sprite>sprites\bg_gamemodes</sprite>
+        <sprite>sprites\spr_buttons_testLevel</sprite>
+        <sprite>sprites\spr_buttons_back</sprite>
+      </sprites>
     </sprites>
-    <sprites name="Main menus">
-      <sprite>sprites\spr_clickableObject</sprite>
-      <sprite>sprites\spr_gamename</sprite>
-      <sprite>sprites\spr_pressStart</sprite>
-      <sprite>sprites\spr_startgame</sprite>
-      <sprite>sprites\spr_exit</sprite>
-      <sprite>sprites\spr_testlevel</sprite>
-      <sprite>sprites\spr_back</sprite>
+    <sprites name="Levels">
+      <sprite>sprites\bg_testLevel</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background">
-    <backgrounds name="Main menus">
-      <background>background\bg_mainmenu</background>
-    </backgrounds>
-    <backgrounds name="Levels">
-      <background>background\bg_testlevel</background>
-    </backgrounds>
-  </backgrounds>
+  <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_destroy_titlescreen.gml</script>
+    <script>scripts\scr_destroy_mainmenu.gml</script>
+    <script>scripts\scr_destroy_gamemodes.gml</script>
+  </scripts>
   <objects name="objects">
     <objects name="Game Manager">
-      <object>objects\obj_clickableObject</object>
-      <object>objects\obj_backout</object>
-      <object>objects\obj_exitgame</object>
       <object>objects\obj_GameManager</object>
     </objects>
-    <objects name="Main menus">
-      <object>objects\obj_gametitle</object>
-      <object>objects\obj_pressStart</object>
-      <object>objects\obj_startgame</object>
-      <object>objects\obj_exit</object>
-      <object>objects\obj_testlevel</object>
-      <object>objects\obj_back</object>
+    <objects name="Menus">
+      <objects name="Titlescreen">
+        <object>objects\obj_background_titlescreen</object>
+        <object>objects\obj_text_gametitle</object>
+        <object>objects\obj_buttons_pressStart</object>
+      </objects>
+      <objects name="Mainmenu">
+        <object>objects\obj_background_mainmenu</object>
+        <object>objects\obj_buttons_startGame</object>
+        <object>objects\obj_buttons_exit</object>
+      </objects>
+      <objects name="Gamemodes">
+        <object>objects\obj_background_gamemodes</object>
+        <object>objects\obj_buttons_testLevel</object>
+        <object>objects\obj_buttons_back</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
-    <rooms name="Main menus">
+    <rooms name="Menus">
       <room>rooms\rm_titlescreen</room>
       <room>rooms\rm_mainmenu</room>
       <room>rooms\rm_gamemodes</room>
