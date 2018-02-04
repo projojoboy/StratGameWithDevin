@@ -226,7 +226,7 @@ if(menu_state == "gamemodes")
 
       if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || mouse_check_button_pressed(mb_left))
       {
-         room_goto(rm_testlevel);
+         room_goto(rm_testMovement);
          menu_state = "none";
          menu_isdrawn = false;
       }

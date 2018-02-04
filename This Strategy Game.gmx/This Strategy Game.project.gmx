@@ -71,14 +71,13 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_testMovement</room>
     <rooms name="Menus">
       <room>rooms\rm_titlescreen</room>
       <room>rooms\rm_mainmenu</room>
       <room>rooms\rm_gamemodes</room>
     </rooms>
     <rooms name="Levels">
-      <room>rooms\rm_testlevel</room>
+      <room>rooms\rm_testMovement</room>
     </rooms>
   </rooms>
   <help>
