@@ -27,6 +27,12 @@
     <sprites name="Levels">
       <sprite>sprites\bg_testLevel</sprite>
     </sprites>
+    <sprites name="Units">
+      <sprite>sprites\spr_Unit1</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprite>sprites\spr_Wall</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -35,6 +41,9 @@
     <script>scripts\scr_destroy_mainmenu.gml</script>
     <script>scripts\scr_destroy_gamemodes.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_Test</font>
+  </fonts>
   <objects name="objects">
     <objects name="Game Manager">
       <object>objects\obj_GameManager</object>
@@ -56,8 +65,13 @@
         <object>objects\obj_buttons_back</object>
       </objects>
     </objects>
+    <objects name="Units">
+      <object>objects\obj_Unit1</object>
+      <object>objects\obj_Wall</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_testMovement</room>
     <rooms name="Menus">
       <room>rooms\rm_titlescreen</room>
       <room>rooms\rm_mainmenu</room>
