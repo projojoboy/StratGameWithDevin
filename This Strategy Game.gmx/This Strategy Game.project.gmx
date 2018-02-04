@@ -18,6 +18,12 @@
       <sprite>sprites\spr_testlevel</sprite>
       <sprite>sprites\spr_back</sprite>
     </sprites>
+    <sprites name="Units">
+      <sprite>sprites\spr_Unit1</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprite>sprites\spr_Wall</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Main menus">
@@ -28,6 +34,9 @@
     </backgrounds>
   </backgrounds>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\fnt_Test</font>
+  </fonts>
   <objects name="objects">
     <objects name="Game Manager">
       <object>objects\obj_clickableObject</object>
@@ -43,8 +52,13 @@
       <object>objects\obj_testlevel</object>
       <object>objects\obj_back</object>
     </objects>
+    <objects name="Units">
+      <object>objects\obj_Unit1</object>
+      <object>objects\obj_Wall</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_testMovement</room>
     <rooms name="Main menus">
       <room>rooms\rm_titlescreen</room>
       <room>rooms\rm_mainmenu</room>
