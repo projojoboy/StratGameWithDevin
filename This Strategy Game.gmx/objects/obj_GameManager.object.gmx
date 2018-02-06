@@ -28,9 +28,13 @@
             <string>///Initialise
 
 
+//Hotkey stuff
 window_set_fullscreen(true);
+mousex_old = 50;
+mousey_old = 900;
 
 
+//Menu drawing
 menu_state = "titlescreen";
 menu_isdrawn = false;
 button = "start";
@@ -70,6 +74,20 @@ if (keyboard_check_pressed(vk_escape))
    {
       window_set_fullscreen(true);
    }
+}
+
+//Alternate between mouse &amp; keyboard
+if(keyboard_check_pressed(vk_anykey))
+{
+   mousex_old = mouse_x;
+   mousey_old = mouse_y;
+   window_set_cursor(cr_none);
+}
+
+if(mouse_check_button_pressed(mb_any) || mouse_wheel_up() || mouse_wheel_down()
+|| mousex_old != mouse_x || mousey_old != mouse_y)
+{
+    window_set_cursor(cr_default);
 }
 </string>
           </argument>
@@ -117,7 +135,7 @@ if(menu_state == "mainmenu" &amp;&amp; menu_isdrawn == false)
    instance_create(room_width/2, room_height/8*3, 
    obj_buttons_startGame);
    
-   instance_create(room_width/2, room_height/8*6, 
+   instance_create(room_width/2, room_height/8*4, 
    obj_buttons_exit);   
    
    button = "startgame";
@@ -132,7 +150,7 @@ if(menu_state == "gamemodes" &amp;&amp; menu_isdrawn == false)
    instance_create(room_width/2, room_height/8*3, 
    obj_buttons_testLevel);
    
-   instance_create(room_width/2, room_height/8*6, 
+   instance_create(room_width/2, room_height/8*4, 
    obj_buttons_back);   
    
    button = "testlevel";
@@ -181,40 +199,46 @@ if(menu_state == "mainmenu")
    if(button == "startgame")
    {
 
-      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || mouse_check_button_pressed(mb_left))
+      obj_buttons_startGame.sprite_index = spr_buttons_startGame_on;
+      obj_buttons_exit.sprite_index = spr_buttons_exit_off;
+      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
       {
          room_goto(rm_gamemodes);
          menu_state = "gamemodes";
          menu_isdrawn = false;
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || position_meeting(mouse_x, mouse_y, obj_buttons_exit))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "exit";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || position_meeting(mouse_x, mouse_y, obj_buttons_exit))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "exit";
          }
     }
     
-    if(button == "exit")
+    
+    else if(button == "exit")
     {
 
-      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || mouse_check_button_pressed(mb_left))
+      obj_buttons_exit.sprite_index = spr_buttons_exit_on;
+      obj_buttons_startGame.sprite_index = spr_buttons_startGame_off;
+      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
       {
          game_end();
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || position_meeting(mouse_x, mouse_y, obj_buttons_startGame))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "startgame";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || position_meeting(mouse_x, mouse_y, obj_buttons_startGame))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "startgame";
          }
-    }
+    }  
+    
 }
 
 
@@ -224,42 +248,48 @@ if(menu_state == "gamemodes")
    if(button == "testlevel")
    {
 
-      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || mouse_check_button_pressed(mb_left))
+      obj_buttons_testLevel.sprite_index = spr_buttons_testLevel_on;
+      obj_buttons_back.sprite_index = spr_buttons_back_off;
+      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
       {
-         room_goto(rm_testlevel);
+         room_goto(rm_testMovement);
          menu_state = "none";
          menu_isdrawn = false;
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || position_meeting(mouse_x, mouse_y, obj_buttons_back))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "back";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || position_meeting(mouse_x, mouse_y, obj_buttons_back))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "back";
          }
     }
     
-    if(button == "back")
+    
+    else if(button == "back")
     {
 
-      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || mouse_check_button_pressed(mb_left))
+      obj_buttons_back.sprite_index = spr_buttons_back_on;
+      obj_buttons_testLevel.sprite_index = spr_buttons_testLevel_off;
+      if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
       {
          room_goto(rm_mainmenu);
          menu_state = "mainmenu";
          menu_isdrawn = false;
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || position_meeting(mouse_x, mouse_y, obj_buttons_testLevel))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "testlevel";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || position_meeting(mouse_x, mouse_y, obj_buttons_testLevel))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "testlevel";
          }
-    }
+    }  
+    
 }
 </string>
           </argument>
