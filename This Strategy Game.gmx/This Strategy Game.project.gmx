@@ -15,13 +15,17 @@
       </sprites>
       <sprites name="Mainmenu">
         <sprite>sprites\bg_mainmenu</sprite>
-        <sprite>sprites\spr__buttons_startGame</sprite>
-        <sprite>sprites\spr_buttons_exit</sprite>
+        <sprite>sprites\spr_buttons_startGame_off</sprite>
+        <sprite>sprites\spr_buttons_startGame_on</sprite>
+        <sprite>sprites\spr_buttons_exit_off</sprite>
+        <sprite>sprites\spr_buttons_exit_on</sprite>
       </sprites>
       <sprites name="Gamemodes">
         <sprite>sprites\bg_gamemodes</sprite>
-        <sprite>sprites\spr_buttons_testLevel</sprite>
-        <sprite>sprites\spr_buttons_back</sprite>
+        <sprite>sprites\spr_buttons_testLevel_off</sprite>
+        <sprite>sprites\spr_buttons_testLevel_on</sprite>
+        <sprite>sprites\spr_buttons_back_off</sprite>
+        <sprite>sprites\spr_buttons_back_on</sprite>
       </sprites>
     </sprites>
     <sprites name="Levels">
