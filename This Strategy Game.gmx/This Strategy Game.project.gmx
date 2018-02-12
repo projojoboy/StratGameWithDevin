@@ -32,7 +32,9 @@
       <sprite>sprites\bg_testLevel</sprite>
     </sprites>
     <sprites name="Units">
-      <sprite>sprites\spr_Unit1</sprite>
+      <sprite>sprites\spr_player_unit_idle</sprite>
+      <sprite>sprites\spr_player_unit_moved</sprite>
+      <sprite>sprites\spr_player_unit_selected</sprite>
     </sprites>
     <sprites name="Environment">
       <sprite>sprites\spr_Wall</sprite>
@@ -70,7 +72,7 @@
       </objects>
     </objects>
     <objects name="Units">
-      <object>objects\obj_Unit1</object>
+      <object>objects\obj_player_unit</object>
       <object>objects\obj_Wall</object>
     </objects>
   </objects>
