@@ -34,10 +34,16 @@ mousex_old = 50;
 mousey_old = 900;
 
 
-//Menu drawing
-menu_state = "titlescreen";
+//Menu tracking
+game_initialised = false;
+menu_state = "none";
 menu_isdrawn = false;
-button = "start";
+button = "none";
+
+//Game tracking
+game_state = "none";
+game_isdrawn = false;
+battle_phase = "none";
 </string>
           </argument>
         </arguments>
@@ -111,6 +117,12 @@ if(mouse_check_button_pressed(mb_any) || mouse_wheel_up() || mouse_wheel_down()
             <kind>1</kind>
             <string>///Drawing the menus
 
+if(game_initialised == false)
+{
+   menu_state = "titlescreen";
+   button = "start";
+   game_initialised = true;
+}
 
 if(menu_state == "titlescreen" &amp;&amp; menu_isdrawn == false)
 {
@@ -196,9 +208,8 @@ if(menu_state == "titlescreen")
 if(menu_state == "mainmenu")
 {
 
-   if(button == "startgame")
+   if(button == "startgame" &amp;&amp; instance_exists(obj_buttons_startGame))
    {
-
       obj_buttons_startGame.sprite_index = spr_buttons_startGame_on;
       obj_buttons_exit.sprite_index = spr_buttons_exit_off;
       if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
@@ -221,7 +232,6 @@ if(menu_state == "mainmenu")
     
     else if(button == "exit")
     {
-
       obj_buttons_exit.sprite_index = spr_buttons_exit_on;
       obj_buttons_startGame.sprite_index = spr_buttons_startGame_off;
       if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
@@ -245,7 +255,7 @@ if(menu_state == "mainmenu")
 if(menu_state == "gamemodes")
 {
 
-   if(button == "testlevel")
+   if(button == "testlevel" &amp;&amp; instance_exists(obj_buttons_testLevel))
    {
 
       obj_buttons_testLevel.sprite_index = spr_buttons_testLevel_on;
@@ -253,15 +263,15 @@ if(menu_state == "gamemodes")
       if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) &amp;&amp; window_get_cursor() != cr_none))
       {
          room_goto(rm_testMovement);
+         game_state = "battle";
          menu_state = "none";
-         menu_isdrawn = false;
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_back) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "back";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_exit) &amp;&amp; window_get_cursor() != cr_none))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_back) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "back";
          }
@@ -280,15 +290,48 @@ if(menu_state == "gamemodes")
          menu_isdrawn = false;
       }
 
-         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
+         if(keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up) || (position_meeting(mouse_x, mouse_y, obj_buttons_testLevel) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "testlevel";
          }
-         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_startGame) &amp;&amp; window_get_cursor() != cr_none))
+         if(keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down) || (position_meeting(mouse_x, mouse_y, obj_buttons_testLevel) &amp;&amp; window_get_cursor() != cr_none))
          {
             button = "testlevel";
          }
     }  
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Battle Phase Logic
+
+
+if(game_state == "battle")
+{
+    if(game_isdrawn == false)
+    {      
+       battle_phase = "player";
+       game_isdrawn = true;
+    }
+    
     
 }
 </string>
