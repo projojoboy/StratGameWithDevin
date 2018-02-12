@@ -46,6 +46,10 @@
     <script>scripts\scr_destroy_titlescreen.gml</script>
     <script>scripts\scr_destroy_mainmenu.gml</script>
     <script>scripts\scr_destroy_gamemodes.gml</script>
+    <scripts name="Units">
+      <script>scripts\scr_navigation.gml</script>
+      <script>scripts\scr_state_player_turn.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Test</font>
@@ -53,6 +57,8 @@
   <objects name="objects">
     <objects name="Game Manager">
       <object>objects\obj_GameManager</object>
+      <object>objects\obj_control</object>
+      <object>objects\obj_Grid</object>
     </objects>
     <objects name="Menus">
       <objects name="Titlescreen">
@@ -74,6 +80,9 @@
     <objects name="Units">
       <object>objects\obj_player_unit</object>
       <object>objects\obj_Wall</object>
+    </objects>
+    <objects name="Parents">
+      <object>objects\par_player</object>
     </objects>
   </objects>
   <rooms name="rooms">
