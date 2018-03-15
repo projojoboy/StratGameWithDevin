@@ -20,6 +20,6 @@
   <width>40</width>
   <height>40</height>
   <frames>
-    <frame index="0">images\spr_player_unit_moved_0.png</frame>
+    <frame index="0">images\spr_square_0.png</frame>
   </frames>
 </sprite>
