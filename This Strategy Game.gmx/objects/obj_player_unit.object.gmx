@@ -30,6 +30,7 @@
 moveAmount = 5;
 init_name = 'none';
 selected = false;
+moving = false;
 </string>
           </argument>
         </arguments>
@@ -87,27 +88,58 @@ if(obj_GameManager.battle_phase = "player" &amp;&amp; !position_meeting(mouse_x,
 if(selected == true)
 {
 
-    if(moveAmount != 0)
+    if(moveAmount &gt;= 2 &amp;&amp; moving == false)
     {
-        if((keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W'))) &amp;&amp; !place_meeting(x, y - 40, obj_Wall))
+        if((keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W'))) &amp;&amp; place_meeting(x, y - 40, obj_player_unit))
+        {
+            y -= 80;
+            moveAmount = moveAmount - 2;
+            moving = true;
+        }
+        else if((keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord('S'))) &amp;&amp; place_meeting(x, y + 40, obj_player_unit))
+        {
+            y += 80;
+            moveAmount = moveAmount - 2;
+            moving = true;
+        }
+        else if((keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord('A'))) &amp;&amp; place_meeting(x - 40, y, obj_player_unit))
+        {
+            x -= 80;
+            moveAmount = moveAmount - 2;
+            moving = true;
+        }
+        else if((keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D'))) &amp;&amp; place_meeting(x + 40, y, obj_player_unit))
+        {
+            x += 80;
+            moveAmount = moveAmount - 2;
+            moving = true;
+        }
+    }
+    if(moveAmount != 0 &amp;&amp; moving == false)
+    {
+        if((keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W'))) &amp;&amp; !place_meeting(x, y - 40, obj_Wall) &amp;&amp; !place_meeting(x, y - 40, obj_player_unit))
         {
             y -= 40;
             moveAmount--;
+            moving = true;
         }
-        else if((keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord('S'))) &amp;&amp; !place_meeting(x, y + 40, obj_Wall))
+        else if((keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord('S'))) &amp;&amp; !place_meeting(x, y + 40, obj_Wall) &amp;&amp; !place_meeting(x, y + 40, obj_player_unit))
         {
             y += 40;
             moveAmount--;
+            moving = true;
         }
-        else if((keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord('A'))) &amp;&amp; !place_meeting(x - 40, y, obj_Wall))
+        else if((keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord('A'))) &amp;&amp; !place_meeting(x - 40, y, obj_Wall) &amp;&amp; !place_meeting(x - 40, y, obj_player_unit))
         {
             x -= 40;
             moveAmount--;
+            moving = true;
         }
-        else if((keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D'))) &amp;&amp; !place_meeting(x + 40, y, obj_Wall))
+        else if((keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D'))) &amp;&amp; !place_meeting(x + 40, y, obj_Wall) &amp;&amp; !place_meeting(x + 40, y, obj_player_unit))
         {
             x += 40;
             moveAmount--;
+            moving = true;
         }
     }
 }
@@ -126,6 +158,8 @@ else if(moveAmount == 0)
 {
     sprite_index = spr_player_unit_moved;
 }
+
+moving = false;
 </string>
           </argument>
         </arguments>
